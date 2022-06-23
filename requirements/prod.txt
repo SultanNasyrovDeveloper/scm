@@ -1,4 +1,4 @@
-django==4.5.*
+django==4.0.*
 djangorestframework==3.13.*
 django-filter==22.*
 pyyaml==6.0

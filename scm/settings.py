@@ -16,6 +16,7 @@ with open('config.yml') as stream:
 
 DEBUG = config.get('debug', False)
 SECRET_KEY = config.get('secretKey')
+AUTH_USER_MODEL = 'user.User'
 
 ALLOWED_HOSTS = []
 
@@ -28,6 +29,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+
+    'scm.user',
+    'scm.enterprise'
 ]
 
 MIDDLEWARE = [

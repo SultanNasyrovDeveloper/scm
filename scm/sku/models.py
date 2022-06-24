@@ -1,25 +1,35 @@
-from tkinter import CASCADE
-from unicodedata import category
 from django.db import models
-from django.utils.translation import gettext_lazy as _
 
-class Sku(models.Model):
+from .enums import UnitOfMeasurement
+
+
+class SKUCategory(models.Model):
+
+    name = models.CharField(max_length=1000)
+
+
+class SKU(models.Model):
     """
-    Represents instance of stock-keeping unit (SKU)
+    Stock keeping item.
+
+    Represents any item stored in enterprise stock(warehouse).
     """
 
-    class Uom(models.TextChoices):
-        """
-        Represents enum for units of measurement (UoM) of SKU
-        """
-
-        PCS = 'pcs', _('Pieces')
-        KG = 'kg', _('Kilograms')
-        L = 'l', _('Liters')
-        M = 'm', _('Meters')
-        M2 = 'sqm', _('Square meters')
-        M3 = 'cum', _('Cubic meters')
-
+    guid = models.CharField(max_length=500)
+    category = models.ForeignKey(
+        'sku.SKUCategory',
+        on_delete=models.SET_NULL,
+        null=True,
+        default=None
+    )
+    is_discrete = models.BooleanField(default=True)
+    name = models.CharField(max_length=1000,  default='')
+    uom = models.CharField(
+        max_length=50,
+        choices=UnitOfMeasurement.choices,
+        default=UnitOfMeasurement.piece
+    )
+    price = models.DecimalField(max_digits=8, decimal_places=4, default=0)
 
     name = models.CharField(max_length=255)
     unit_of_measurement = models.CharField(

@@ -6,4 +6,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
 
     path('api/v1/enterprise/', include('scm.enterprise.urls')),
+    path('api/v1/sku/', include('scm.sku.urls'))
 ]

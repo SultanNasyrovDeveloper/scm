@@ -1,0 +1,9 @@
+debug: true
+secretKey: 'secret'
+
+postgres:
+  name: scm_db_name
+  host: localhost
+  port: 5432
+  user: scm_db_user
+  password: 1Qetuwry

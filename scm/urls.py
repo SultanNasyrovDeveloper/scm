@@ -7,5 +7,6 @@ urlpatterns = [
 
     path('api/v1/enterprise/', include('scm.enterprise.urls')),
     path('api/v1/sku/', include('scm.sku.urls')),
+    path('api/v1/routing/', include('scm.routing.urls')),
     path('api/v1/bom/', include('scm.bom.urls')),
 ]

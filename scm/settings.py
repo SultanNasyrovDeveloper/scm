@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'django_filters',
 
     'scm.user',
-    'scm.enterprise'
+    'scm.enterprise',
+    'scm.sku',
 ]
 
 MIDDLEWARE = [

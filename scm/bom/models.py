@@ -1,33 +1,31 @@
 from django.db import models
+from mptt.models import MPTTModel, TreeForeignKey
 
 
-class Bom(models.Model):
+class BOM(models.Model):
     """
-    Represents instance of BOM (bill of materials) for an SKU
+    Bill of materials.
     """
+    name = models.CharField(max_length=1000, default='')
+    sku = models.ForeignKey(
+        'sku.SKU',
+        on_delete=models.CASCADE,
+        related_name='boms'
+    )
+    materials = models.ManyToManyField('bom.BOMMaterial', blank=True)
+
+
+class BOMMaterial(MPTTModel):
 
     sku = models.ForeignKey(
-        'sku.Sku',
+        'sku.SKU',
         on_delete=models.CASCADE,
-        related_name='bom_tree'
     )
-
-
-class Bom_Node(models.Model):
-    """
-    Represents a node in the BOM tree of SKU
-    """
-
-    level = models.IntegerField(unique=False)
-    sku = models.ForeignKey(
-        'sku.Sku',
-    )
-    quantity = models.DecimalField(
-        max_digits=3,
-        decimal_places=3
-    )
-    parent = models.ForeignKey(
-        'bom.Bom',
+    parent = TreeForeignKey(
+        'self',
         on_delete=models.CASCADE,
-        related_name='nodes'
+        null=True,
+        blank=True,
+        related_name='children'
     )
+    quantity = models.DecimalField(max_digits=8, decimal_places=4)

@@ -3,3 +3,4 @@ djangorestframework==3.13.*
 django-filter==22.*
 pyyaml==6.0
 psycopg2-binary==2.9.*
+django-mptt==0.13.4

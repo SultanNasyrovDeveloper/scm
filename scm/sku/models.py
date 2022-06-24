@@ -30,19 +30,3 @@ class SKU(models.Model):
         default=UnitOfMeasurement.piece
     )
     price = models.DecimalField(max_digits=8, decimal_places=4, default=0)
-
-    name = models.CharField(max_length=255)
-    unit_of_measurement = models.CharField(
-        max_length=3,
-        choices=Uom.choices,
-        default=Uom.PCS)
-
-class Sku_Category(models.Model):
-    """
-    Represents the category of SKU
-    """
-    name = models.CharField(max_length=255)
-    sku = models.ForeignKey(
-        'sku.Sku',
-        related_name='category'
-    )

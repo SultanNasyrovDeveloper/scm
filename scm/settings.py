@@ -30,10 +30,12 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'django_filters',
+    'mptt',
 
     'scm.user',
     'scm.enterprise',
     'scm.sku',
+    'scm.bom',
 ]
 
 MIDDLEWARE = [

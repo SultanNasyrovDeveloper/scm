@@ -1,34 +1,52 @@
-from email.quoprimime import unquote
 from django.db import models
 
 
-class Routing(models.Model):
+class WorkStation(models.Model):
+
     """
-    Represents full routing of SKU through various workstations (i.e. stages of manufacturing)
+    Represents workstation.
+
+    Attributes:
+        setup_time: Amount of time in seconds needed to set up station.
+        lag_time: Amount of time in seconds spent between sku production.
     """
+
+    factory = models.ForeignKey(
+        'enterprise.Factory',
+        on_delete=models.CASCADE,
+        related_name='workstations'
+    )
+    name = models.CharField(max_length=1000)
+    setup_time = models.IntegerField()
+
+
+class SKURouting(models.Model):
 
     sku = models.ForeignKey(
-        'sku.Sku',
+        'sku.SKU',
         on_delete=models.CASCADE,
-        related_name='routing'
+        related_name='routings'
     )
 
-class Routing_Node(models.Model):
-    """
-    Represents an individual routing node of an SKU at a particular manufacturing stage
-    """
 
-    order = models.IntegerField(unique=False)
+class RoutingStation(models.Model):
 
-    #in seconds, I suppose? or should we implement enum of uom for cycle time as well?
-    cycle_time = models.IntegerField(unique=False) 
-
-    #the time between the end of the current node(manufacturing stage) and the next one
-    #in seconds?
-    lag_time = models.IntegerField(unique = False) 
-
-    parent = models.ForeignKey(
-        'routing.Routing',
+    routing = models.ForeignKey(
+        'routing.SKURouting',
         on_delete=models.CASCADE,
-        related_name='full_route'
+        related_name='stations'
     )
+    workstation = models.ForeignKey(
+        'routing.WorkStation',
+        on_delete=models.CASCADE,
+
+    )
+    sku = models.ForeignKey(
+        'sku.SKU',
+        on_delete=models.CASCADE,
+    )
+    order = models.IntegerField(default=1)
+
+    class Meta:
+        ordering = ('order', )
+        unique_together = ('routing', 'order')

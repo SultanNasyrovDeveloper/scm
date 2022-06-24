@@ -1,3 +1,5 @@
+config.yml
+
 *.log
 *.pot
 *.pyc

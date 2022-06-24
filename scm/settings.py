@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'scm.user',
     'scm.enterprise',
     'scm.sku',
+    'scm.supply',
     'scm.routing',
     'scm.bom',
 ]

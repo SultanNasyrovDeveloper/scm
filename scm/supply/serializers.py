@@ -9,11 +9,13 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
         model = models.PurchaseOrder
         fields = '__all__'
 
+
 class PurchaseItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.PurchaseItem
         fields = '__all__'
+
 
 class VendorSerializer(serializers.ModelSerializer):
 

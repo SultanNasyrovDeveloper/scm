@@ -1,6 +1,6 @@
 from django.db import models
 
-from .enums import POStatus
+from .enums import PurchaseOrderStatus
 
 
 class PurchaseOrder(models.Model):
@@ -10,8 +10,8 @@ class PurchaseOrder(models.Model):
 
     status = models.CharField(
         max_length=50,
-        choices=POStatus.choices,
-        default=POStatus.created
+        choices=PurchaseOrderStatus.choices,
+        default=PurchaseOrderStatus.created
     )
     created_datetime = models.DateTimeField(auto_now=True)
     estimated_delivery_datetime = models.DateTimeField()
@@ -19,7 +19,6 @@ class PurchaseOrder(models.Model):
     vendor = models.ForeignKey(
         'supply.Vendor',
         related_name='purchase_orders',
-        null=False,
         on_delete=models.DO_NOTHING
     )
 
@@ -38,8 +37,16 @@ class PurchaseItem(models.Model):
         'sku.SKU',
         on_delete=models.DO_NOTHING
     )
-    purchased_quantity = models.DecimalField()
-    delivered_quantity = models.DecimalField()
+    purchased_quantity = models.DecimalField(
+        max_digits=6,
+        decimal_places=3,
+        default=0
+    )
+    delivered_quantity = models.DecimalField(
+        max_digits=6,
+        decimal_places=3,
+        default=0
+    )
 
 
 class Vendor(models.Model):
@@ -51,4 +58,4 @@ class Vendor(models.Model):
         max_length=255,
         default = ''
     )
-    default_transit_time_ms = models.IntegerField(null=False)
+    default_transit_time_ms = models.IntegerField(default=0)

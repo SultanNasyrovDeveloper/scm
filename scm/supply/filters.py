@@ -16,6 +16,7 @@ class PurchaseItemFilterSet(filters.FilterSet):
         model = models.PurchaseItem
         fields = '__all__'
 
+
 class VendorFilterSet(filters.FilterSet):
 
     class Meta:

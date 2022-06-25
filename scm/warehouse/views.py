@@ -15,4 +15,3 @@ class WarehouseItemViewSet(viewsets.ModelViewSet):
     queryset = models.Warehouse.objects.all()
     serializer_class = serializers.WarehouseItemsSerializer
     filterset_class = filters.WarehouseFilterSet
-

@@ -10,4 +10,5 @@ urlpatterns = [
     path('api/v1/supply/', include('scm.supply.urls')),
     path('api/v1/routing/', include('scm.routing.urls')),
     path('api/v1/bom/', include('scm.bom.urls')),
+    path('api/v1/warehouse/', include('scm.warehouse.urls')),
 ]

@@ -30,9 +30,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'django_filters',
-    'ordered_model',
     'mptt',
-
 
     'scm.user',
     'scm.enterprise',
@@ -40,6 +38,7 @@ INSTALLED_APPS = [
     'scm.supply',
     'scm.routing',
     'scm.bom',
+    'scm.warehouse',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +74,7 @@ REST_FRAMEWORK = {
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 20
 }
 
 WSGI_APPLICATION = 'scm.wsgi.application'
@@ -91,7 +90,6 @@ DATABASES = {
         'PORT': postgres_config.get('port'),
     }
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {

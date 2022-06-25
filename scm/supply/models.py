@@ -56,6 +56,6 @@ class Vendor(models.Model):
 
     name = models.CharField(
         max_length=255,
-        default = ''
+        default=''
     )
     default_transit_time_ms = models.IntegerField(default=0)

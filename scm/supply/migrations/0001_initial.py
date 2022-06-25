@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('sku', '0002_alter_sku_name'),
+        ('sku', '0001_initial'),
     ]
 
     operations = [

@@ -4,5 +4,6 @@ from . import views
 
 router = DefaultRouter()
 router.register('purchase_orders', views.PurchaseOrderViewSet)
+router.register('purchase_items', views.PurchaseItemViewSet)
 router.register('vendors', views.VendorViewSet)
 urlpatterns = router.urls

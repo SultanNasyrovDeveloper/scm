@@ -30,5 +30,3 @@ class SKU(models.Model):
         default=UnitOfMeasurement.piece
     )
     price = models.DecimalField(max_digits=8, decimal_places=4, default=0)
-    name = models.CharField(max_length=255)
-
